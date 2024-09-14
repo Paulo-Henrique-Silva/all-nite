@@ -1,7 +1,19 @@
-.pi {
+.pi, span {
     color: var(--primary-color);
 }
 
 .link-btn a {
     text-decoration: none;
+}
+
+.link-active {
+    background-color: var(--primary-color);
+
+    .pi {
+        color: var(--surface-0);
+    }
+
+    span {
+        color: var(--surface-0);
+    }
 }
