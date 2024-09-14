@@ -1,6 +1,6 @@
 <div class="flex h-full">
     <!--Menu-->
-    <ul class="list-none p-0 m-0 w-3">
+    <ul class="list-none p-0 m-0 w-11">
         <!--logo-->
         <li>
             <a class="flex flex-column justify-content-center align-items-center p-3">
@@ -11,25 +11,30 @@
 
         <p-divider />
 
-        <li>
-            <a class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
+        <li class="link-btn">
+            <a routerLink="search" class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
                 <i class="pi pi-search text-4xl mb-2"></i>
                 <span class="text-primary font-bold text-sm">Search</span>
             </a>
         </li>
-        <li>
-            <a class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
+        <li class="link-btn" >
+            <a routerLink="" class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
                 <i class="pi pi-map text-4xl mb-2"></i>
                 <span class="text-primary font-bold text-sm">Map</span>
             </a>
         </li>
-        <li>
-            <a class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
+        <li class="link-btn">
+            <a routerLink="add" class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
                 <i class="pi pi-plus text-4xl mb-2"></i>
                 <span class="text-primary font-bold text-sm">Add</span>
             </a>
         </li>
     </ul>
 
-    <p-divider layout="vertical" />
+    <p-divider layout="vertical" class="w-1" />
+
+    <!--Form section-->
+    <!-- <div class="w-8">
+        <router-outlet></router-outlet>
+    </div> -->
 </div>
