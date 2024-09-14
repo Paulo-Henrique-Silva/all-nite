@@ -1,12 +1,35 @@
-<main>
-    <section class="flex flex-column w-2">
-        <!--Logo-->
-        <img src="../assets/icon-all-nite.svg" class="w-12 mb-4"/>
+<div class="flex h-full">
+    <!--Menu-->
+    <ul class="list-none p-0 m-0 w-3">
+        <!--logo-->
+        <li>
+            <a class="flex flex-column justify-content-center align-items-center p-3">
+                <img class="w-4rem mb-3" src="/assets/icon-all-nite.svg" >
+                <span class="text-primary font-bold	text-xl">All Nite</span>
+            </a>
+        </li>
 
-        <p-button icon="pi pi-search w-12" [rounded]="true" [text]="true" />
-    </section>
+        <p-divider />
 
-    <section class="w-3">
+        <li>
+            <a class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
+                <i class="pi pi-search text-4xl mb-2"></i>
+                <span class="text-primary font-bold text-sm">Search</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
+                <i class="pi pi-map text-4xl mb-2"></i>
+                <span class="text-primary font-bold text-sm">Map</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex flex-column justify-content-center align-items-center cursor-pointer p-3 border-round hover:surface-100 active:surface-200 transition-duration-150 transition-colors">
+                <i class="pi pi-plus text-4xl mb-2"></i>
+                <span class="text-primary font-bold text-sm">Add</span>
+            </a>
+        </li>
+    </ul>
 
-    </section>
-</main>
+    <p-divider layout="vertical" />
+</div>
