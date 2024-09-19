@@ -1,12 +1,12 @@
 <div class="flex flex-column p-3 h-full">
     <!--Serch field-->
-    <div class="field mb-3">
+    <div class="field my-3">
         <label for="search">Search for an Event...</label>
         <input id="search" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
     </div>
 
     <!--Events list-->
-    <p-scrollPanel class="w-12 max-h-screen" [style]="{ height: '100%' }" styleClass="custombar1">
+    <p-scrollPanel class="w-12 h-full" [style]="{height: 'calc(100vh - 150px)'}" styleClass="custombar1">
         <div *ngFor="let event of events;">
             <div class="m-3">
                 <p-card [header]="event.name" class="cursor-pointer">
