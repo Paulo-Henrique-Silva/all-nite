@@ -1,8 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-purple/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
 body {
     overflow: hidden;
+}
+
+.event-card {
+    .p-card:hover {
+        background-color: var(--surface-100);
+    }
+
+    .p-card-title {
+        font-size: 1rem;
+    }
+
+    .p-card-content {
+        padding: 0;
+    }
 }
