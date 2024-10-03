@@ -2,12 +2,13 @@
     <!--Serch field-->
     <div class="field my-3 mx-2">
         <label for="search">Search for an Event...</label>
-        <input id="search" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <input id="search" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        [(ngModel)]="eventName" (ngModelChange)="filter()">
     </div>
 
     <!--Events list-->
     <p-scrollPanel class="w-12 h-full" [style]="{height: 'calc(100vh - 150px)'}" styleClass="custombar1">
-        <div *ngFor="let event of events;">
+        <div *ngFor="let event of filteredEvents;">
             <div class="my-3 mx-2">
                 <p-card [header]="event.name" class="cursor-pointer event-card">
                     <div class="flex justify-content-between m-0">

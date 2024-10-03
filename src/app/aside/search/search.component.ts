@@ -89,11 +89,22 @@ export class SearchComponent implements OnInit {
         cordinateY: 61
       }
     }
-  ]
+  ];
   
-  filteredEvents: AntEvent[] = []
+  filteredEvents: AntEvent[] = [];
+
+  eventName: string = "";
   
   ngOnInit(): void {
+    this.filteredEvents = this.events
+  }
+  
+  filter(): void {
+    if (this.eventName.length != 0) {
+      this.filteredEvents = this.events.filter(e => e.name.toUpperCase().includes(this.eventName.toUpperCase()))
+      return
+    }
+    
     this.filteredEvents = this.events
   }
 }
