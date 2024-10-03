@@ -5,6 +5,7 @@ import { AntLocation } from '../../shared/models/ant-location';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { LocationService } from '../../shared/services/location.service';
 
 
 @Component({
@@ -94,6 +95,12 @@ export class SearchComponent implements OnInit {
   filteredEvents: AntEvent[] = [];
 
   eventName: string = "";
+
+  locationService: LocationService;
+
+  constructor(locationService: LocationService) {
+    this.locationService = locationService;
+  }
   
   ngOnInit(): void {
     this.filteredEvents = this.events
@@ -104,7 +111,12 @@ export class SearchComponent implements OnInit {
       this.filteredEvents = this.events.filter(e => e.name.toUpperCase().includes(this.eventName.toUpperCase()))
       return
     }
-    
+
     this.filteredEvents = this.events
+  }
+
+  seeEventLocation(antEvent: AntEvent): void {
+    this.locationService.location.cordinateX = antEvent.location.cordinateX
+    this.locationService.location.cordinateY = antEvent.location.cordinateY
   }
 }

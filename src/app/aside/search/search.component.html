@@ -10,7 +10,7 @@
     <p-scrollPanel class="w-12 h-full" [style]="{height: 'calc(100vh - 150px)'}" styleClass="custombar1">
         <div *ngFor="let event of filteredEvents;">
             <div class="my-3 mx-2">
-                <p-card [header]="event.name" class="cursor-pointer event-card">
+                <p-card [header]="event.name" class="cursor-pointer event-card" (click)="seeEventLocation(event)">
                     <div class="flex justify-content-between m-0">
                         <p class="text-sm font-medium">{{ event.location.name }}</p>
                         <p class="text-sm">{{ event.date.toLocaleDateString() }}</p>

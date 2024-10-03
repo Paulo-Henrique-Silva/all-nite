@@ -3,7 +3,7 @@
         <aol-interaction-default></aol-interaction-default>
 
         <aol-view [zoom]="16">
-            <aol-coordinate [x]="-46.533333" [y]="-23.463333" [srid]="'EPSG:4326'"></aol-coordinate>
+            <aol-coordinate [x]="locationService.cordinateX" [y]="locationService.cordinateY" [srid]="'EPSG:4326'"></aol-coordinate>
         </aol-view>
         <aol-layer-tile>
             <aol-source-osm></aol-source-osm>
