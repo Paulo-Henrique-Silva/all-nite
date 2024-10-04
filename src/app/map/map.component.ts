@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularOpenlayersModule } from "ng-openlayers";
-import { LocationService } from '../shared/services/location.service';
+import { MapService } from '../shared/services/map.service';
 import { AntLocation } from '../shared/models/ant-location';
 
 @Component({
@@ -11,10 +11,10 @@ import { AntLocation } from '../shared/models/ant-location';
   styleUrl: './map.component.scss'
 })
 export class MapComponent implements OnInit {
-  locationService: AntLocation;
+  mapService: AntLocation;
 
-  constructor(locationService: LocationService) {
-    this.locationService = locationService.location;
+  constructor(mapService: MapService) {
+    this.mapService = mapService.curlocation;
   }
 
   ngOnInit(): void {

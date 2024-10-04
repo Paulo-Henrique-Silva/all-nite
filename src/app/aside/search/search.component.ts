@@ -5,7 +5,7 @@ import { AntLocation } from '../../shared/models/ant-location';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { LocationService } from '../../shared/services/location.service';
+import { MapService } from '../../shared/services/map.service';
 
 
 @Component({
@@ -17,77 +17,77 @@ import { LocationService } from '../../shared/services/location.service';
 })
 export class SearchComponent implements OnInit {
   
-  events: AntEvent[] = [
+  events: AntEvent[] = [ 
     {
       name: 'Electric Storm Festival',
       date: new Date(2024, 9, 15, 15, 0),
       location: {
         name: 'Fatec Guarulhos - CECAP',
-        cordinateX: 12,
-        cordinateY: 86
+        cordinateX: -46.5300, 
+        cordinateY: -23.4600 
       }
     },
     {
       name: 'Summer Breeze Concert',
       date: new Date(2024, 7, 20, 19, 30),
       location: {
-        name: 'Central Park',
-        cordinateX: 45,
-        cordinateY: 78
+        name: 'Central Park, New York City',
+        cordinateX: -73.968285, 
+        cordinateY: 40.785091  
       }
     },
     {
       name: 'Food Truck Festival',
       date: new Date(2024, 5, 1, 11, 0),
       location: {
-        name: 'Downtown Area',
-        cordinateX: 23,
-        cordinateY: 91
+        name: 'Pioneer Courthouse Square, Portland',
+        cordinateX: -122.678395,
+        cordinateY: 45.518653  
       }
     },
     {
       name: 'Marathon Run',
       date: new Date(2024, 3, 12, 8, 0),
       location: {
-        name: 'Stadium',
-        cordinateX: 56,
-        cordinateY: 34
+        name: 'London Olympic Stadium',
+        cordinateX: -0.016560,  
+        cordinateY: 51.538570  
       }
     },
     {
       name: 'Music Awards',
       date: new Date(2024, 11, 25, 20, 0),
       location: {
-        name: 'Theater',
-        cordinateX: 67,
-        cordinateY: 19
+        name: 'Sydney Opera House',
+        cordinateX: 151.215297, 
+        cordinateY: -33.856784 
       }
     },
     {
       name: 'New Year\'s Eve Party',
       date: new Date(2024, 12, 31, 22, 0),
       location: {
-        name: 'City Center',
-        cordinateX: 89,
-        cordinateY: 42
+        name: 'Times Square, New York City',
+        cordinateX: -73.985130, 
+        cordinateY: 40.758896  
       }
     },
     {
       name: 'Spring Fling',
       date: new Date(2024, 4, 10, 14, 0),
       location: {
-        name: 'University Campus',
-        cordinateX: 31,
-        cordinateY: 75
+        name: 'University of Tokyo, Hongo Campus',
+        cordinateX: 139.762180, 
+        cordinateY: 35.712956  
       }
     },
     {
       name: 'Winter Wonderland',
       date: new Date(2024, 2, 1, 17, 0),
       location: {
-        name: 'Ski Resort',
-        cordinateX: 98,
-        cordinateY: 61
+        name: 'Aspen Ski Resort, Colorado',
+        cordinateX: -106.817540,
+        cordinateY: 39.191100  
       }
     }
   ];
@@ -96,10 +96,10 @@ export class SearchComponent implements OnInit {
 
   eventName: string = "";
 
-  locationService: LocationService;
+  mapService: MapService;
 
-  constructor(locationService: LocationService) {
-    this.locationService = locationService;
+  constructor(mapService: MapService) {
+    this.mapService = mapService;
   }
   
   ngOnInit(): void {
@@ -116,7 +116,7 @@ export class SearchComponent implements OnInit {
   }
 
   seeEventLocation(antEvent: AntEvent): void {
-    this.locationService.location.cordinateX = antEvent.location.cordinateX
-    this.locationService.location.cordinateY = antEvent.location.cordinateY
+    this.mapService.curlocation.cordinateX = antEvent.location.cordinateX
+    this.mapService.curlocation.cordinateY = antEvent.location.cordinateY
   }
 }

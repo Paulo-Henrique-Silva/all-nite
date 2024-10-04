@@ -4,14 +4,14 @@ import { AntLocation } from '../models/ant-location';
 @Injectable({
   providedIn: 'root'
 })
-export class LocationService {
+export class MapService {
   private _location: AntLocation = { name: "Guarulhos - Centro", cordinateX: -46.533333, cordinateY: -23.463333 };
 
-  public get location(): AntLocation {
+  public get curlocation(): AntLocation {
     return this._location;
   }
 
-  public set location(value: AntLocation) {
+  public set curlocation(value: AntLocation) {
     this._location = value;
   }
 
