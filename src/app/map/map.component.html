@@ -3,7 +3,7 @@
         <aol-interaction-default></aol-interaction-default>
 
         <aol-view [zoom]="18">
-            <aol-coordinate [x]="5" [y]="45" [srid]="'EPSG:4326'"></aol-coordinate>
+            <aol-coordinate [x]="mapService.cordinateX" [y]="mapService.cordinateY" [srid]="'EPSG:4326'"></aol-coordinate>
         </aol-view>
 
         <!--Map-->
@@ -21,38 +21,17 @@
        <aol-layer-vector>
             <aol-source-vector>
                 <aol-feature>
-                    <aol-geometry-polygon>
-                        <aol-collection-coordinates
-                            [coordinates]="[[[5, 45],[5.05, 45],[5.05, 45.05],[5, 45.05]]]"
-                            [srid]="'EPSG:4326'"
-                        >
-                        </aol-collection-coordinates>
-                    </aol-geometry-polygon>
+                    <aol-geometry-point>
+                        <aol-coordinate [x]="mapService.cordinateX" [y]="mapService.cordinateY" [srid]="'EPSG:4326'"></aol-coordinate>
+                    </aol-geometry-point>
                     <aol-style>
-                        <aol-style-stroke [color]="'red'"></aol-style-stroke>
-                        <aol-style-fill [color]="[255,0,0,1]"></aol-style-fill>
+                        <aol-style-icon 
+                            [src]="'/assets/map-marker.svg'" 
+                            [scale]="0.2">
+                        </aol-style-icon>
                     </aol-style>
                 </aol-feature>
             </aol-source-vector>
         </aol-layer-vector> 
-
-         <aol-overlay>
-            <aol-coordinate [x]="5" [y]="45" [srid]="'EPSG:4326'" >
-            </aol-coordinate>
-            <aol-content>
-                <div class="my-overlay-class">
-                    <i class="pi pi-map-marker text-4xl"></i>
-                </div>
-            </aol-content>
-        </aol-overlay> 
-        
-        <aol-control>
-            <aol-content>
-                <aol-coordinate [x]="5" [y]="45" [srid]="'EPSG:4326'" ></aol-coordinate>
-                <div id="controlnameforcssstyling" class="ol-unselectable ol-control">
-                    <span>Terste</span>
-                </div>
-            </aol-content>
-        </aol-control>
     </aol-map>
 </div>
