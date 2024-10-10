@@ -103,7 +103,7 @@ export class SearchComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.filteredEvents = this.events
+    this.filteredEvents = this.events.sort((a, b) => a.name.localeCompare(b.name))
   }
   
   filter(): void {
