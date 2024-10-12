@@ -1,3 +1,23 @@
-<div class="m-3">
-    <p>Add Works!</p>
+<div class="flex flex-column p-3 h-full">
+    <form [formGroup]="formGroup">
+        <!--Search field-->
+        <div class="field my-3 mx-2">
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" pInputText 
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border 
+                border-round appearance-none outline-none focus:border-primary w-full"/>
+        </div>
+        
+        <!--Date-->
+        <div class="field my-3 mx-2">
+            <label for="date" class="w-full">Date</label>
+            <p-calendar formControlName="date" [showButtonBar]="true" dateFormat="dd/mm/yy" 
+                styleClass="w-full"
+                inputStyleClass="text-base text-color surface-overlay p-2 border-1 border-solid surface-border 
+                border-round appearance-none outline-none focus:border-primary w-full" />
+        </div>
+
+    </form>
+
+    <pre>{{ formGroup.value | json }}</pre>
 </div>

@@ -6,12 +6,13 @@ import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { MapService } from '../../shared/services/map.service';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [FormsModule, CommonModule, CardModule, ScrollPanelModule],
+  imports: [FormsModule, CommonModule, CardModule, ScrollPanelModule, InputTextModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
