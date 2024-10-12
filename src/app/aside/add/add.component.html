@@ -1,11 +1,14 @@
 <div class="flex flex-column p-3 h-full">
     <form [formGroup]="formGroup" class="my-3 mx-2">
-        <!--Search field-->
+        <!--Event Name-->
         <div class="field">
-            <label for="name">Name</label>
-            <input id="name" formControlName="name" pInputText 
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border 
+            <label for="eventName">Event Name</label>
+            <input id="eventName" formControlName="eventName" pInputText 
+                class="text-base text-color surface-overlay p-2 border-1 border-solid 
                 border-round appearance-none outline-none focus:border-primary w-full"/>
+                <small *ngIf="isControlInvalid('eventName')" class="text-red-700">
+                    {{ getErrorMessage('eventName') }}
+                </small>
         </div>
         
         <!--Date-->
@@ -13,12 +16,35 @@
             <label for="date" class="w-full">Date</label>
             <p-calendar formControlName="date" [showButtonBar]="true" dateFormat="dd/mm/yy" 
                 styleClass="w-full"
-                inputStyleClass="text-base text-color surface-overlay p-2 border-1 border-solid surface-border 
+                inputStyleClass="text-base text-color surface-overlay p-2 border-1 border-solid 
                 border-round appearance-none outline-none focus:border-primary w-full" />
+                <small *ngIf="isControlInvalid('date')" class="text-red-700">
+                    {{ getErrorMessage('date') }}
+                </small>
+        </div>
+        
+        <!--Location Name-->
+        <div class="field">
+            <label for="locationName">Location Name</label>
+            <input id="locationName" formControlName="locationName" pInputText 
+                class="text-base text-color surface-overlay p-2 border-1 border-solid 
+                border-round appearance-none outline-none focus:border-primary w-full"/>
+                <small *ngIf="isControlInvalid('locationName')" class="text-red-700">
+                    {{ getErrorMessage('locationName') }}
+                </small>
         </div>
 
-        <p-button styleClass="w-full mt-3" label="Add" />
-    </form>
+        <!--Coordinates-->
+        <div class="field">
+            <label for="coordinates">Coordinates</label>
+            <input id="coordinates" formControlName="coordinates" pInputText placeholder="Select on the Map..."
+                class="text-base text-color surface-overlay p-2 border-1 border-solid 
+                border-round appearance-none outline-none focus:border-primary w-full"/>
+                <small *ngIf="isControlInvalid('coordinates')" class="text-red-700">
+                    {{ getErrorMessage('coordinates') }}
+                </small>
+        </div>
 
-    <pre>{{ formGroup.value | json }}</pre>
+        <p-button styleClass="w-full mt-3" [disabled]="formGroup.invalid && !formGroup.get('coordinates')?.invalid" label="Add" />
+    </form>
 </div>

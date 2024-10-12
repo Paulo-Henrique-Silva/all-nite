@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AntLocation } from '../models/ant-location';
+import { AntLocation } from '../../shared/models/ant-location';
 
 @Injectable({
   providedIn: 'root'

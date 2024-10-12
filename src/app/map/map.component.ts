@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularOpenlayersModule } from "ng-openlayers";
-import { MapService } from '../shared/services/map.service';
+import { MapService } from './services/map.service';
 import { AntLocation } from '../shared/models/ant-location';
 import { fromLonLat, toLonLat } from 'ol/proj';
 import { CommonModule } from '@angular/common';

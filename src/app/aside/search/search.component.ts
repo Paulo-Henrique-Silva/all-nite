@@ -5,7 +5,7 @@ import { AntLocation } from '../../shared/models/ant-location';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { MapService } from '../../shared/services/map.service';
+import { MapService } from '../../map/services/map.service';
 import { InputTextModule } from 'primeng/inputtext';
 
 
