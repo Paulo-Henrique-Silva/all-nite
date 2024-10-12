@@ -9,6 +9,15 @@ export class MapService {
 
   private _isEventLocationSet: boolean = false;
 
+  private _isMapClickable: boolean = false;
+  
+  public get isMapClickable(): boolean {
+    return this._isMapClickable;
+  }
+  public set isMapClickable(value: boolean) {
+    this._isMapClickable = value;
+  }
+
   public get curlocation(): AntLocation {
     return this._location;
   }

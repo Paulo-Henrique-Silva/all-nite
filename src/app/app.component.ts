@@ -5,6 +5,7 @@ import { SideBarComponent } from "./aside/side-bar/side-bar.component";
 import { MapComponent } from "./map/map.component";
 import { DividerModule } from 'primeng/divider';
 import { AnimateModule } from 'primeng/animate';
+import { MapService } from './map/services/map.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,14 @@ import { AnimateModule } from 'primeng/animate';
 export class AppComponent {
   title: string = 'all-nite';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, protected mapService: MapService) {}
 
   isMapActive(): boolean {
-    return this.router.isActive('', true);
+    if (this.router.isActive('', true)) {
+      this.mapService.isMapClickable = false;
+      return true;
+    }
+
+    return false;
   }
 }

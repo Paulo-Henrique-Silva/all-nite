@@ -97,10 +97,9 @@ export class SearchComponent implements OnInit {
 
   eventName: string = "";
 
-  mapService: MapService;
-
-  constructor(mapService: MapService) {
+  constructor(protected mapService: MapService) {
     this.mapService = mapService;
+    this.mapService.isMapClickable = false;
   }
   
   ngOnInit(): void {

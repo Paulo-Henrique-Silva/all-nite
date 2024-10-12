@@ -15,10 +15,8 @@ import { MapService } from '../../map/services/map.service';
 })
 export class AddComponent {
   formGroup: FormGroup;
-  
-  mapService: MapService;
 
-  constructor(formBuiler: FormBuilder, mapService: MapService) {
+  constructor(formBuiler: FormBuilder, public mapService: MapService) {
     this.formGroup = formBuiler.group({
       eventName: ['', Validators.required],
       date: ['', Validators.required],
@@ -28,6 +26,7 @@ export class AddComponent {
 
     this.mapService = mapService;
     this.mapService.isEventLocationSet = false;
+    this.mapService.isMapClickable = true;
   }
 
   isControlInvalid(formControlName: string): boolean {
