@@ -3,7 +3,8 @@
         <aol-interaction-default></aol-interaction-default>
 
         <aol-view [zoom]="18">
-            <aol-coordinate [x]="mapService.cordinateX" [y]="mapService.cordinateY" [srid]="'EPSG:4326'"></aol-coordinate>
+            <aol-coordinate [x]="mapService.curlocation.cordinateX" [y]="mapService.curlocation.cordinateY" 
+                [srid]="'EPSG:4326'"></aol-coordinate>
         </aol-view>
 
         <!--Map-->
@@ -18,11 +19,12 @@
         <aol-control-zoom></aol-control-zoom>
 
         <!--Location Marker-->
-       <aol-layer-vector>
+        <aol-layer-vector *ngIf="mapService.isEventLocationSet">
             <aol-source-vector>
                 <aol-feature>
                     <aol-geometry-point>
-                        <aol-coordinate [x]="mapService.cordinateX" [y]="mapService.cordinateY" [srid]="'EPSG:4326'"></aol-coordinate>
+                        <aol-coordinate [x]="mapService.curlocation.cordinateX" [y]="mapService.curlocation.cordinateY" 
+                        [srid]="'EPSG:4326'"></aol-coordinate>
                     </aol-geometry-point>
                     <aol-style>
                         <aol-style-icon 

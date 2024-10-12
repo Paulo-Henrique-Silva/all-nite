@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule  } from "@angular/forms"
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-add',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, CalendarModule, InputTextModule ],
+  imports: [ReactiveFormsModule, CommonModule, CalendarModule, InputTextModule, ButtonModule],
   templateUrl: './add.component.html',
   styleUrl: './add.component.scss'
 })

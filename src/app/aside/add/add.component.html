@@ -1,7 +1,7 @@
 <div class="flex flex-column p-3 h-full">
-    <form [formGroup]="formGroup">
+    <form [formGroup]="formGroup" class="my-3 mx-2">
         <!--Search field-->
-        <div class="field my-3 mx-2">
+        <div class="field">
             <label for="name">Name</label>
             <input id="name" formControlName="name" pInputText 
                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border 
@@ -9,7 +9,7 @@
         </div>
         
         <!--Date-->
-        <div class="field my-3 mx-2">
+        <div class="field">
             <label for="date" class="w-full">Date</label>
             <p-calendar formControlName="date" [showButtonBar]="true" dateFormat="dd/mm/yy" 
                 styleClass="w-full"
@@ -17,6 +17,7 @@
                 border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
 
+        <p-button styleClass="w-full mt-3" label="Add" />
     </form>
 
     <pre>{{ formGroup.value | json }}</pre>

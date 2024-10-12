@@ -13,8 +13,8 @@
         <div *ngFor="let event of filteredEvents;">
             <div class="my-3 mx-2">
                 <p-card [header]="event.name" (click)="seeEventLocation(event)"
-                    styleClass="cursor-pointer event-card">
-                    <div class="flex justify-content-between m-0">
+                    styleClass="cursor-pointer event-card hover:surface-100 active:surface-300">
+                    <div class="flex justify-content-between m-0 ">
                         <p class="text-sm font-medium">{{ event.location.name }}</p>
                         <p class="text-sm">{{ event.date.toLocaleDateString() }}</p>
                     </div>
