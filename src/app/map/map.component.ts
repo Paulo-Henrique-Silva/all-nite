@@ -21,4 +21,7 @@ export class MapComponent {
     this.mapService = mapService;
   }
 
+  test() {
+    console.log('c')
+  }
 }

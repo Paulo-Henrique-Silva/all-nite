@@ -1,10 +1,10 @@
 <div id="map" class="w-12 h-full">
-    <aol-map [ngClass]="{'cursor-pointer': mapService.isMapClickable }">
+    <aol-map [ngClass]="{'cursor-pointer': mapService.isMapClickable }" (olChange)="test()">
         <aol-interaction-default></aol-interaction-default>
 
         <aol-view [zoom]="18">
-            <aol-coordinate [x]="mapService.curlocation.cordinateX" [y]="mapService.curlocation.cordinateY" 
-                [srid]="'EPSG:4326'"></aol-coordinate>
+            <aol-coordinate (x)="mapService.curlocation.cordinateX" [y]="mapService.curlocation.cordinateY" 
+                [srid]="'EPSG:4326'" ></aol-coordinate>
         </aol-view>
 
         <!--Map-->
