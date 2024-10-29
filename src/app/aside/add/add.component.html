@@ -37,14 +37,19 @@
         <!--Coordinates-->
         <div class="field">
             <label for="coordinates">Coordinates</label>
-            <input id="coordinates" formControlName="coordinates" pInputText placeholder="Select on the Map..."
+
+            <p-inputGroup>
+                <input id="coordinates" formControlName="coordinates" pInputText placeholder="Select on the Map..."
                 class="text-base text-color surface-overlay p-2 border-1 border-solid 
-                border-round appearance-none outline-none focus:border-primary w-full"/>
-                <small *ngIf="isControlInvalid('coordinates')" class="text-red-700">
-                    {{ getErrorMessage('coordinates') }}
-                </small>
+                appearance-none outline-none focus:border-primary w-full" readonly="true"/>
+                <button type="button" pButton icon="pi pi-map-marker" class="p-button-primary p-2"></button>
+            </p-inputGroup>
+
+            <small *ngIf="isControlInvalid('coordinates')" class="text-red-700">
+                {{ getErrorMessage('coordinates') }}
+            </small>
         </div>
 
-        <p-button styleClass="w-full mt-3" [disabled]="formGroup.invalid && !formGroup.get('coordinates')?.invalid" label="Add" />
+        <p-button styleClass="w-full mt-3" [disabled]="formGroup.invalid" label="Add" />
     </form>
 </div>
