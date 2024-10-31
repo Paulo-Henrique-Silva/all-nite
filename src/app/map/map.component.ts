@@ -19,8 +19,8 @@ export class MapComponent {
     this.mapService = mapService;
   }
 
-  test(event: any) {
-    const coordinates: Coordinate = toLonLat(event);
+  getCoordinates(eventCoordinates: any) {
+    const coordinates: Coordinate = toLonLat(eventCoordinates);
     console.log(coordinates);
   }
 }

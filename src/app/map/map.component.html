@@ -1,5 +1,5 @@
 <div id="map" class="w-12 h-full">
-    <aol-map [ngClass]="{'cursor-pointer': mapService.isMapClickable }" (olClick)="test($event.coordinate)">
+    <aol-map [ngClass]="{'cursor-pointer': mapService.isMapClickable }" (olClick)="getCoordinates($event.coordinate)">
         <aol-view [zoom]="18">
             <aol-coordinate [x]="mapService.curlocation.cordinateX" [y]="mapService.curlocation.cordinateY" 
                 [srid]="'EPSG:4326'"></aol-coordinate>
