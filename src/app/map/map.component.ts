@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { AngularOpenlayersModule } from "ng-openlayers";
 import { MapService } from './services/map.service';
-import { AntLocation } from '../shared/models/ant-location';
-import { fromLonLat, toLonLat } from 'ol/proj';
 import { CommonModule } from '@angular/common';
-//import { AolMarkerModule } from 'ngx-ol-library';
-
+import { toLonLat } from 'ol/proj';
+import { Coordinate } from 'ol/coordinate';
 
 @Component({
   selector: 'app-map',
@@ -21,7 +19,8 @@ export class MapComponent {
     this.mapService = mapService;
   }
 
-  test() {
-    console.log('c')
+  test(event: any) {
+    const coordinates: Coordinate = toLonLat(event);
+    console.log(coordinates);
   }
 }
