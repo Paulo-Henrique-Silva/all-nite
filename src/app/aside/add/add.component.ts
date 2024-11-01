@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule, AbstractControl  } from "@angular/forms"
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { MapService } from '../../map/services/map.service';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add',
@@ -15,8 +16,10 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
   templateUrl: './add.component.html',
   styleUrl: './add.component.scss'
 })
-export class AddComponent {
+export class AddComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
+
+  subscriptionLocation: Subscription = new Subscription();
 
   constructor(formBuiler: FormBuilder, public mapService: MapService) {
     this.formGroup = formBuiler.group({
@@ -29,6 +32,19 @@ export class AddComponent {
     this.mapService = mapService;
     this.mapService.isEventLocationSet = false;
     this.mapService.isMapClickable = true;
+  }
+
+  ngOnInit(): void {
+    this.subscriptionLocation = this.mapService.choosenLocation$.subscribe({next:  (location) => {
+      this.formGroup.get('coordinates')?.setValue(`${location?.cordinateX};${location?.cordinateY}`)
+    },
+    error: (error) => {
+      console.log('Error while subscribing: ' + error);
+    }});
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionLocation.unsubscribe();
   }
 
   isControlInvalid(formControlName: string): boolean {
@@ -53,5 +69,13 @@ export class AddComponent {
     }
 
     return '';
+  }
+
+  hideForm(): void {
+    this.mapService.changeMapStatus(true);
+  }
+
+  onSubmit(): void {
+
   }
 }

@@ -6,6 +6,7 @@ import { MapComponent } from "./map/map.component";
 import { DividerModule } from 'primeng/divider';
 import { AnimateModule } from 'primeng/animate';
 import { MapService } from './map/services/map.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,25 @@ import { MapService } from './map/services/map.service';
 export class AppComponent {
   title: string = 'all-nite';
 
-  constructor(private router: Router, protected mapService: MapService) {}
+  subscriptionHideMap: Subscription = new  Subscription();
+  isHide:  boolean = false;
+
+  constructor(private router: Router, protected mapService: MapService) {
+    this.subscriptionHideMap =  this.mapService.hideMap$.subscribe({next:  (mapStatus) => {
+      if (mapStatus) {
+        this.isHide = mapStatus;
+      }
+    },
+    error: (error) => {
+      console.log('Error while subscribing: ' + error);
+    }});
+  }
 
   isMapActive(): boolean {
+    if (this.isHide) {
+      return false;
+    }
+
     if (this.router.isActive('', true)) {
       this.mapService.isMapClickable = false;
       return true;

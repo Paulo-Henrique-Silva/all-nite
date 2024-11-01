@@ -42,7 +42,7 @@
                 <input id="coordinates" formControlName="coordinates" pInputText placeholder="Select on the Map..."
                 class="text-base text-color surface-overlay p-2 border-1 border-solid 
                 appearance-none outline-none focus:border-primary w-full" readonly="true"/>
-                <button type="button" pButton icon="pi pi-map-marker" class="p-button-primary p-2"></button>
+                <button type="button" pButton icon="pi pi-map-marker" class="p-button-primary p-2" (click)="hideForm()"></button>
             </p-inputGroup>
 
             <small *ngIf="isControlInvalid('coordinates')" class="text-red-700">
@@ -50,6 +50,6 @@
             </small>
         </div>
 
-        <p-button styleClass="w-full mt-3" [disabled]="formGroup.invalid" label="Add" />
+        <p-button styleClass="w-full mt-3" (onClick)="onSubmit()" [disabled]="formGroup.invalid" label="Add" />
     </form>
 </div>

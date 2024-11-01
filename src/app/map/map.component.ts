@@ -20,7 +20,11 @@ export class MapComponent {
   }
 
   getCoordinates(eventCoordinates: any) {
+    if (!this.mapService.isMapClickable) {
+      return;
+    }
+
     const coordinates: Coordinate = toLonLat(eventCoordinates);
-    console.log(coordinates);
+    this.mapService.updateChoosenLocation({ name: '', cordinateX: coordinates[0], cordinateY: coordinates[1] })
   }
 }
