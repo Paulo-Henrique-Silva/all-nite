@@ -8,6 +8,7 @@ import { MapService } from '../../map/services/map.service';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { Subscription } from 'rxjs';
+import { AntLocation } from '../../shared/models/ant-location';
 
 @Component({
   selector: 'app-add',
@@ -35,12 +36,29 @@ export class AddComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.mapService.choosenLocation != null) {
+      this.setFormCoordinates(this.mapService.choosenLocation);
+    }
+
     this.subscriptionLocation = this.mapService.choosenLocation$.subscribe({next:  (location) => {
-      this.formGroup.get('coordinates')?.setValue(`${location?.cordinateX};${location?.cordinateY}`)
+      if (location != null) {
+        this.setFormCoordinates(location);
+      }
     },
     error: (error) => {
       console.log('Error while subscribing: ' + error);
     }});
+
+    this.mapService.hideSideBar(false);
+  }
+
+  setFormCoordinates(location: AntLocation) {
+    //TODO: Map changes coordinates after chosing a location in ADD form, because tha map coordinates use the same properties as the Map maker.
+    //Therefore, it must have another properties for the map maker in map service... 
+    this.formGroup.get('coordinates')?.setValue(`${location.cordinateX};${location.cordinateY}`);
+    this.mapService.isEventLocationSet = true;
+    this.mapService.curlocation.cordinateX = location.cordinateX;
+    this.mapService.curlocation.cordinateY = location.cordinateY;
   }
 
   ngOnDestroy(): void {
@@ -72,7 +90,7 @@ export class AddComponent implements OnInit, OnDestroy {
   }
 
   hideForm(): void {
-    this.mapService.changeMapStatus(true);
+    this.mapService.hideSideBar(true);
   }
 
   onSubmit(): void {

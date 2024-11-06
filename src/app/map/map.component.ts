@@ -20,11 +20,13 @@ export class MapComponent {
   }
 
   getCoordinates(eventCoordinates: any) {
-    if (!this.mapService.isMapClickable) {
+    if (this.mapService.isMapClickable == false) {
       return;
     }
+    
+    this.mapService.hideSideBar(false);
 
     const coordinates: Coordinate = toLonLat(eventCoordinates);
-    this.mapService.updateChoosenLocation({ name: '', cordinateX: coordinates[0], cordinateY: coordinates[1] })
+    this.mapService.updateChoosenLocation({ name: '', cordinateX: coordinates[0], cordinateY: coordinates[1] });
   }
 }

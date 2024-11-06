@@ -18,13 +18,13 @@ import { Subscription } from 'rxjs';
 export class AppComponent {
   title: string = 'all-nite';
 
-  subscriptionHideMap: Subscription = new  Subscription();
-  isHide:  boolean = false;
+  subscriptionSideBarStatus: Subscription = new  Subscription();
+  sideBarStatus: boolean = false;
 
-  constructor(private router: Router, protected mapService: MapService) {
-    this.subscriptionHideMap =  this.mapService.hideMap$.subscribe({next:  (mapStatus) => {
-      if (mapStatus) {
-        this.isHide = mapStatus;
+  constructor(private router: Router, private mapService: MapService) {
+    this.subscriptionSideBarStatus =  this.mapService.hideMap$.subscribe({next:  (sideBarStatus) => {
+      if (sideBarStatus != null) {
+        this.sideBarStatus = sideBarStatus;
       }
     },
     error: (error) => {
@@ -32,11 +32,13 @@ export class AppComponent {
     }});
   }
 
-  isMapActive(): boolean {
-    if (this.isHide) {
-      return false;
+  isSideBarHidden(): boolean {
+    if (this.sideBarStatus) {
+      this.mapService.isMapClickable = true;
+      return true;
     }
 
+    //Is in map only route?
     if (this.router.isActive('', true)) {
       this.mapService.isMapClickable = false;
       return true;

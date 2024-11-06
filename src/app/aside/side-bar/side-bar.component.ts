@@ -13,6 +13,5 @@ import { SidebarModule } from 'primeng/sidebar';
   styleUrl: './side-bar.component.scss'
 })
 export class SideBarComponent {
-  isSideBarVisible: boolean = false
 
 }

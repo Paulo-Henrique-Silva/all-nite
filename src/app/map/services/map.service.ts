@@ -14,12 +14,22 @@ export class MapService {
 
   private _choosenLocation$: Subject<AntLocation | null> = new Subject<AntLocation | null>();
 
-  private _hideMap$: Subject<boolean | null> = new Subject<boolean | null>();
+  private _choosenLocation: AntLocation | null = null;
+
+  private _sideBarStatus$: Subject<boolean | null> = new Subject<boolean | null>();
+  
+  public get choosenLocation(): AntLocation | null {
+    return this._choosenLocation;
+  }
+  private set choosenLocation(value: AntLocation | null) {
+    this._choosenLocation = value;
+  }
+
   public get hideMap$(): Subject<boolean | null> {
-    return this._hideMap$;
+    return this._sideBarStatus$;
   }
   public set hideMap$(value: Subject<boolean | null>) {
-    this._hideMap$ = value;
+    this._sideBarStatus$ = value;
   }
 
   public get choosenLocation$(): Subject<AntLocation | null> {
@@ -55,9 +65,10 @@ export class MapService {
 
   updateChoosenLocation(location: AntLocation): void {
     this.choosenLocation$.next(location);
+    this.choosenLocation = location;
   }
 
-  changeMapStatus(status: boolean): void {
-    this._hideMap$.next(status);
+  hideSideBar(status: boolean): void {
+    this._sideBarStatus$.next(status);
   }
 }

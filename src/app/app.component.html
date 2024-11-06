@@ -1,9 +1,9 @@
 <main class="flex justify-content-center flex-wrap w-12 h-screen">
     <app-side-bar class="w-1" ></app-side-bar>
 
-    <div *ngIf="!isMapActive()" class="w-3">
+    <div *ngIf="!isSideBarHidden()" class="w-3">
         <router-outlet></router-outlet>
     </div>
 
-    <app-map [class]="{'w-11': isMapActive(), 'w-8': !isMapActive() }"></app-map>
+    <app-map [class]="{'w-11': isSideBarHidden(), 'w-8': !isSideBarHidden() }"></app-map>
 </main>
