@@ -56,13 +56,16 @@ export class AddComponent implements OnInit, OnDestroy {
     //TODO: Map changes coordinates after chosing a location in ADD form, because tha map coordinates use the same properties as the Map maker.
     //Therefore, it must have another properties for the map maker in map service... 
     this.formGroup.get('coordinates')?.setValue(`${location.cordinateX};${location.cordinateY}`);
+
     this.mapService.isEventLocationSet = true;
-    this.mapService.curlocation.cordinateX = location.cordinateX;
-    this.mapService.curlocation.cordinateY = location.cordinateY;
+    this.mapService.makerLocation.cordinateX = location.cordinateX;
+    this.mapService.makerLocation.cordinateY = location.cordinateY;
   }
 
   ngOnDestroy(): void {
     this.subscriptionLocation.unsubscribe();
+
+    this.mapService.isEventLocationSet = false;
   }
 
   isControlInvalid(formControlName: string): boolean {

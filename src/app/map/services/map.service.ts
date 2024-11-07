@@ -6,7 +6,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class MapService {
-  private _location: AntLocation = { name: "Guarulhos - Centro", cordinateX: -46.533333, cordinateY: -23.463333 };
+  private _curLocation: AntLocation = { name: "Guarulhos - Centro", cordinateX: -46.533333, cordinateY: -23.463333 };
+
+  private _makerLocation: AntLocation = { name: '', cordinateX: -46.533333, cordinateY: -23.463333 };
 
   private _isEventLocationSet: boolean = false;
 
@@ -47,11 +49,11 @@ export class MapService {
   }
 
   public get curlocation(): AntLocation {
-    return this._location;
+    return this._curLocation;
   }
 
   public set curlocation(value: AntLocation) {
-    this._location = value;
+    this._curLocation = value;
   }
   
   public get isEventLocationSet(): boolean {
@@ -61,6 +63,13 @@ export class MapService {
     this._isEventLocationSet = value;
   }
   
+  public get makerLocation(): AntLocation {
+    return this._makerLocation;
+  }
+  public set makerLocation(value: AntLocation) {
+    this._makerLocation = value;
+  }
+
   constructor() { }
 
   updateChoosenLocation(location: AntLocation): void {

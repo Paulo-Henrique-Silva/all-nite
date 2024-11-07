@@ -118,6 +118,10 @@ export class SearchComponent implements OnInit {
   seeEventLocation(antEvent: AntEvent): void {
     this.mapService.curlocation.cordinateX = antEvent.location.cordinateX;
     this.mapService.curlocation.cordinateY = antEvent.location.cordinateY;
+
+    this.mapService.makerLocation.cordinateX = antEvent.location.cordinateX;
+    this.mapService.makerLocation.cordinateY = antEvent.location.cordinateY;
+
     this.mapService.isEventLocationSet = true;
   }
 }
