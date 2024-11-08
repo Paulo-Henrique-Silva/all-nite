@@ -7,6 +7,7 @@ import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { MapService } from '../../map/services/map.service';
 import { InputTextModule } from 'primeng/inputtext';
+import { StorageService } from '../../shared/services/storage.service';
 
 
 @Component({
@@ -22,10 +23,16 @@ export class SearchComponent implements OnInit {
   
   filteredEvents: AntEvent[] = [];
 
-  eventName: string = "";
+  eventNameQuery: string = "";
 
-  constructor(private mapService: MapService) {
+  constructor(private mapService: MapService, private storageService: StorageService) {
     this.mapService.isMapClickable = false;
+    this.events = this.storageService.getAll();
+    
+    //Converts to ensure is a valid date object.
+    this.events.forEach(e => {
+      e.date = new Date(e.date);
+    });
   }
   
   ngOnInit(): void {
@@ -33,8 +40,8 @@ export class SearchComponent implements OnInit {
   }
   
   filter(): void {
-    if (this.eventName.length != 0) {
-      this.filteredEvents = this.events.filter(e => e.name.toUpperCase().includes(this.eventName.toUpperCase()))
+    if (this.eventNameQuery.length != 0) {
+      this.filteredEvents = this.events.filter(e => e.name.toUpperCase().includes(this.eventNameQuery.toUpperCase()))
       return
     }
 

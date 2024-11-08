@@ -106,7 +106,7 @@ export class AddComponent implements OnInit, OnDestroy {
     //Creates an event
     const newEvent =  new AntEvent();
     newEvent.id = this.generateUID();
-    newEvent.date = this.formGroup.get('date')?.value
+    newEvent.date = new Date(this.formGroup.get('date')?.value)
     newEvent.name = this.formGroup.get('eventName')?.value
 
     //creates a location
