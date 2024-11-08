@@ -1,7 +1,7 @@
 <main class="flex justify-content-center flex-wrap w-12 h-screen">
     <app-side-bar class="w-1" ></app-side-bar>
 
-    <div *ngIf="!isSideBarHidden()" class="w-3">
+    <div [class]="{'hidden-sidebar': isSideBarHidden(), 'w-3': !isSideBarHidden() }">
         <router-outlet></router-outlet>
     </div>
 
