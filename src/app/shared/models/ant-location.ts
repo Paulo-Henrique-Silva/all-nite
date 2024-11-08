@@ -1,7 +1,9 @@
 export class AntLocation {
-    public name: string = ''
+    public id: string = '';
 
-    public cordinateX: number = 0
+    public name: string = '';
 
-    public cordinateY: number = 0
+    public cordinateX: number = 0;
+
+    public cordinateY: number = 0;
 }

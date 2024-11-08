@@ -13,13 +13,9 @@ import { Coordinate } from 'ol/coordinate';
   styleUrl: './map.component.scss'
 })
 export class MapComponent {
-  mapService: MapService;
+  constructor(protected mapService: MapService) { }
 
-  constructor(mapService: MapService) {
-    this.mapService = mapService;
-  }
-
-  getCoordinates(eventCoordinates: any) {
+  setCoordinates(eventCoordinates: any): void {
     if (this.mapService.isMapClickable == false) {
       return;
     }
@@ -27,6 +23,6 @@ export class MapComponent {
     this.mapService.hideSideBar(false);
 
     const coordinates: Coordinate = toLonLat(eventCoordinates);
-    this.mapService.updateChoosenLocation({ name: '', cordinateX: coordinates[0], cordinateY: coordinates[1] });
+    this.mapService.updateChoosenLocation({ id: '', name: '', cordinateX: coordinates[0], cordinateY: coordinates[1] });
   }
 }

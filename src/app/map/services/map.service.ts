@@ -6,9 +6,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class MapService {
-  private _curLocation: AntLocation = { name: "Guarulhos - Centro", cordinateX: -46.533333, cordinateY: -23.463333 };
+  private _curLocation: AntLocation = { id: '', name: '', cordinateX: -46.533333, cordinateY: -23.463333 };
 
-  private _makerLocation: AntLocation = { name: '', cordinateX: -46.533333, cordinateY: -23.463333 };
+  private _makerLocation: AntLocation = { id: '', name: '', cordinateX: -46.533333, cordinateY: -23.463333 };
 
   private _isEventLocationSet: boolean = false;
 

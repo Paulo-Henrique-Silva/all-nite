@@ -1,9 +1,11 @@
 import { AntLocation } from "./ant-location"
 
 export class AntEvent {
-    name: string = ''
+    public id: string = '';
 
-    date: Date = new Date()
+    public name: string = '';
 
-    location: AntLocation = new AntLocation()
+    public date: Date = new Date();
+
+    public location: AntLocation = new AntLocation();
 }

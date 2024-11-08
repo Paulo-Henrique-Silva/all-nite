@@ -9,6 +9,9 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { Subscription } from 'rxjs';
 import { AntLocation } from '../../shared/models/ant-location';
+import { StorageService } from '../../shared/services/storage.service';
+import { v4 as uuidv4 } from 'uuid';
+import { AntEvent } from '../../shared/models/ant-event';
 
 @Component({
   selector: 'app-add',
@@ -22,7 +25,7 @@ export class AddComponent implements OnInit, OnDestroy {
 
   subscriptionLocation: Subscription = new Subscription();
 
-  constructor(formBuiler: FormBuilder, public mapService: MapService) {
+  constructor(private formBuiler: FormBuilder, private mapService: MapService, private storageService: StorageService) {
     this.formGroup = formBuiler.group({
       eventName: ['', Validators.required],
       date: ['', Validators.required],
@@ -30,7 +33,6 @@ export class AddComponent implements OnInit, OnDestroy {
       coordinates: ['', Validators.required]
     })
 
-    this.mapService = mapService;
     this.mapService.isEventLocationSet = false;
     this.mapService.isMapClickable = true;
   }
@@ -96,7 +98,30 @@ export class AddComponent implements OnInit, OnDestroy {
     this.mapService.hideSideBar(true);
   }
 
-  onSubmit(): void {
+  generateUID(): string {
+    return uuidv4();
+  }
 
+  onSubmit(): void {
+    //Creates an event
+    const newEvent =  new AntEvent();
+    newEvent.id = this.generateUID();
+    newEvent.date = this.formGroup.get('date')?.value
+    newEvent.name = this.formGroup.get('eventName')?.value
+
+    //creates a location
+    const newLocation = new AntLocation();
+    newLocation.id = this.generateUID();
+    newLocation.name = this.formGroup.get('locationName')?.value;
+
+    //get coordinates info
+    const coordinates = String(this.formGroup.get('coordinates')?.value).split(";");
+    newLocation.cordinateX  = Number(coordinates[0]);
+    newLocation.cordinateY  = Number(coordinates[1]);
+
+    newEvent.location = newLocation;
+
+    this.storageService.addItem(newEvent.id, newEvent);
+    this.formGroup.reset();
   }
 }
