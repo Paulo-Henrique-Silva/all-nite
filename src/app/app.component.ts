@@ -22,7 +22,7 @@ export class AppComponent {
   sideBarStatus: boolean = false;
 
   constructor(private router: Router, private mapService: MapService) {
-    this.subscriptionSideBarStatus =  this.mapService.hideMap$.subscribe({next:  (sideBarStatus) => {
+    this.subscriptionSideBarStatus =  this.mapService.sideBarStatus$.subscribe({next:  (sideBarStatus) => {
       if (sideBarStatus != null) {
         this.sideBarStatus = sideBarStatus;
       }

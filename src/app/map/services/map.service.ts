@@ -27,10 +27,10 @@ export class MapService {
     this._choosenLocation = value;
   }
 
-  public get hideMap$(): Subject<boolean | null> {
+  public get sideBarStatus$(): Subject<boolean | null> {
     return this._sideBarStatus$;
   }
-  public set hideMap$(value: Subject<boolean | null>) {
+  public set sideBarStatus$(value: Subject<boolean | null>) {
     this._sideBarStatus$ = value;
   }
 

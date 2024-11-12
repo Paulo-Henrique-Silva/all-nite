@@ -1,5 +1,5 @@
 <div id="map" class="w-12 h-full">
-    <aol-map [ngClass]="{'cursor-pointer': mapService.isMapClickable }" (olClick)="setCoordinates($event.coordinate)">
+    <aol-map [ngClass]="{'cursor-pointer': mapService.isMapClickable }" (olClick)="setCoordinates($event.coordinate)" >
         <aol-view [zoom]="18">
             <aol-coordinate [x]="mapService.curlocation.cordinateX" [y]="mapService.curlocation.cordinateY" 
                 [srid]="'EPSG:4326'"></aol-coordinate>
@@ -32,6 +32,15 @@
                     </aol-style>
                 </aol-feature>
             </aol-source-vector>
-        </aol-layer-vector> 
+        </aol-layer-vector>
     </aol-map>
+
+
+    <p-dialog [visible]="mapService.isMapClickable && isSideBarHidden" [style]="{ width: '25rem' }" [position]="'top'">
+        <ng-template pTemplate="headless">
+            <div class="text-center surface-card border-round shadow-3 p-2">
+                Click to select a location on the map
+            </div>
+        </ng-template>
+    </p-dialog>
 </div>
