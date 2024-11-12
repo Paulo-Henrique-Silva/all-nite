@@ -12,9 +12,17 @@
     <p-scrollPanel class="w-12 h-full" [style]="{height: 'calc(100vh - 150px)'}" styleClass="custombar1">
         <div *ngFor="let event of filteredEvents;">
             <div class="my-3 mx-2">
-                <p-card [header]="event.name" (click)="seeEventLocation(event)"
+                <p-card (click)="seeEventLocation(event)" 
                     styleClass="cursor-pointer event-card hover:surface-100 active:surface-300">
-                    <div class="flex justify-content-between m-0 ">
+                    <ng-template pTemplate="header">
+                        <div class="flex justify-content-between align-items-center px-3 pt-1">
+                            <p class="text-lg font-bold">{{ event.name }}</p>
+                            <p-button icon="pi pi-trash" [rounded]="true" [text]="true" (onClick)="deleteEvent(event.id)" 
+                                pTooltip="Delete"/>
+                        </div>
+                    </ng-template>
+                    
+                    <div class="flex justify-content-between align-items-center m-0">
                         <p class="text-sm font-medium">{{ event.location.name }}</p>
                         <p class="text-sm">{{ event.date.toLocaleDateString() }}</p>
                     </div>
