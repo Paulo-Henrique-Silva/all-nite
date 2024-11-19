@@ -11,6 +11,13 @@
         <p-confirmDialog />
     </div>
 
+    <!--No events warning-->
+    <div *ngIf="filteredEvents.length == 0" class="my-3 mx-2 text-center">
+        <i class="pi pi-search-minus" style="font-size: 4rem; color: var(--primary-color)"></i>
+        <p class="text-lg font-semibold">Empty...</p>
+        <p class="font-normal">No events found</p>
+    </div>
+
     <!--Events list-->
     <p-scrollPanel class="w-12 h-full" [style]="{height: 'calc(100vh - 150px)'}" styleClass="custombar1">
         <div *ngFor="let event of filteredEvents;">
