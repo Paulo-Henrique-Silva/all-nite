@@ -6,6 +6,9 @@
         class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round 
             appearance-none outline-none focus:border-primary w-full"
         [(ngModel)]="eventNameQuery" (ngModelChange)="filter()">
+
+        <p-toast />
+        <p-confirmDialog />
     </div>
 
     <!--Events list-->
@@ -18,7 +21,7 @@
                     <ng-template pTemplate="header">
                         <div class="flex justify-content-between align-items-center px-3 pt-1">
                             <p class="text-lg font-bold">{{ event.name }}</p>
-                            <p-button icon="pi pi-trash" [rounded]="true" [text]="true" (onClick)="deleteEvent(event.id)" 
+                            <p-button icon="pi pi-trash" [rounded]="true" [text]="true" (onClick)="deleteEvent(event.id, $event)" 
                                 pTooltip="Delete"/>
                         </div>
                     </ng-template>

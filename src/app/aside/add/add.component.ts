@@ -12,12 +12,16 @@ import { AntLocation } from '../../shared/models/ant-location';
 import { StorageService } from '../../shared/services/storage.service';
 import { v4 as uuidv4 } from 'uuid';
 import { AntEvent } from '../../shared/models/ant-event';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-add',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, CalendarModule, InputTextModule, ButtonModule, InputGroupModule, InputGroupAddonModule],
+  imports: [ReactiveFormsModule, CommonModule, CalendarModule, InputTextModule, ButtonModule, InputGroupModule, 
+    InputGroupAddonModule, ToastModule],
   templateUrl: './add.component.html',
+  providers: [MessageService],
   styleUrl: './add.component.scss'
 })
 export class AddComponent implements OnInit, OnDestroy {
@@ -25,7 +29,10 @@ export class AddComponent implements OnInit, OnDestroy {
 
   subscriptionLocation: Subscription = new Subscription();
 
-  constructor(private formBuiler: FormBuilder, private mapService: MapService, private storageService: StorageService) {
+  isFirstIteration: boolean = true;
+
+  constructor(private formBuiler: FormBuilder, private mapService: MapService, private storageService: StorageService,
+    private messageService: MessageService) {
     this.formGroup = formBuiler.group({
       eventName: ['', Validators.required],
       date: ['', Validators.required],
@@ -64,7 +71,6 @@ export class AddComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptionLocation.unsubscribe();
-
     this.mapService.isEventLocationSet = false;
   }
 
@@ -121,5 +127,7 @@ export class AddComponent implements OnInit, OnDestroy {
 
     this.storageService.addItem(newEvent.id, newEvent);
     this.formGroup.reset();
+    this.mapService.isEventLocationSet = false;
+    this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Event created' });
   }
 }

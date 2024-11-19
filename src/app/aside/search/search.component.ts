@@ -9,11 +9,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { StorageService } from '../../shared/services/storage.service';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [FormsModule, CommonModule, CardModule, ScrollPanelModule, InputTextModule, ButtonModule, TooltipModule],
+  imports: [FormsModule, CommonModule, CardModule, ScrollPanelModule, InputTextModule, ButtonModule, TooltipModule, 
+    ConfirmDialogModule, ToastModule],
+  providers: [ConfirmationService, MessageService],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
@@ -25,7 +31,8 @@ export class SearchComponent implements OnInit {
 
   eventNameQuery: string = "";
 
-  constructor(private mapService: MapService, private storageService: StorageService) {
+  constructor(private mapService: MapService, private storageService: StorageService, private confirmationService: ConfirmationService, 
+    private messageService: MessageService) {
     this.mapService.isMapClickable = false;
     this.events = this.storageService.getAll();
     
@@ -58,9 +65,25 @@ export class SearchComponent implements OnInit {
     this.mapService.isEventLocationSet = true;
   }
 
-  deleteEvent(id: string): void {
-    this.storageService.removeItem(id);
-    this.events = this.events.filter(e => e.id != id);
-    this.filteredEvents = this.filteredEvents.filter(e => e.id != id);;
+  deleteEvent(id: string, event: Event): void {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Do you want to delete this event?',
+      header: 'Delete',
+      icon: 'pi pi-exclamation-triangle',
+      acceptButtonStyleClass:"p-button-danger p-button-text",
+      rejectButtonStyleClass:"p-button-text",
+      acceptIcon:"none",
+      rejectIcon:"none",
+      defaultFocus: 'reject',
+
+      accept: () => {
+        this.storageService.removeItem(id);
+        this.events = this.events.filter(e => e.id != id);
+        this.filteredEvents = this.filteredEvents.filter(e => e.id != id);
+
+        this.messageService.add({ severity: 'info', summary: 'Delete', detail: 'Event deleted' });
+      }
+    });
   }
 }
